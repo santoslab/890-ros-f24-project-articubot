@@ -70,21 +70,39 @@ def generate_launch_description():
         ],
         remappings=[
             ('/world/empty/model/my_robot/joint_state', 'joint_states'),
+            ('/model/my_robot/tf', 'tf'),
+            ('/cmd_vel', 'diff_cont/cmd_vel_unstamped'),
+            ('/model/my_robot/odometry', '/diff_cont/odom')
+
         ],
         output='screen'
     )
 
-    # Rviz
-    rviz = Node(
-       package='rviz2',
-       executable='rviz2',
-       arguments=['-d', os.path.join(pkg_my_robot_description, 'rviz', 'urdf_config.rviz')],
+    diff_cont = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['diff_cont']
     )
-    print(os.path.join(pkg_my_robot_description, 'rviz', 'urdf_config.rviz'))
+
+    joint_broad = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_broad']
+    )
+
+    # Rviz
+    # rviz = Node(
+    #    package='rviz2',
+    #    executable='rviz2',
+    #    arguments=['-d', os.path.join(pkg_my_robot_description, 'rviz', 'urdf_config.rviz')],
+    # )
+    # print(os.path.join(pkg_my_robot_description, 'rviz', 'urdf_config.rviz'))
     return LaunchDescription([
         gz_sim,
         bridge,
-        rviz,
+        #rviz,
         robot_state_publisher,
         spawn,
+        diff_cont,
+        joint_broad
     ])

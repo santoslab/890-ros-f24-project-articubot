@@ -128,7 +128,7 @@
     <xacro:lidar_link />
 
     <link name="base_footprint" />
-lidar_mass
+    
     <joint name="base_joint" type="fixed">
         <parent link="base_footprint" />
         <child link="base_link" />
