@@ -67,6 +67,7 @@ def generate_launch_description():
             '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
             '/model/my_robot/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry',
             '/model/my_robot/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
+            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock'
         ],
         remappings=[
             ('/world/empty/model/my_robot/joint_state', 'joint_states'),
@@ -91,16 +92,16 @@ def generate_launch_description():
     )
 
     # Rviz
-    # rviz = Node(
-    #    package='rviz2',
-    #    executable='rviz2',
-    #    arguments=['-d', os.path.join(pkg_my_robot_description, 'rviz', 'urdf_config.rviz')],
-    # )
-    # print(os.path.join(pkg_my_robot_description, 'rviz', 'urdf_config.rviz'))
+    rviz = Node(
+       package='rviz2',
+       executable='rviz2',
+       arguments=['-d', os.path.join(pkg_my_robot_description, 'rviz', 'urdf_config.rviz')],
+    )
+    print(os.path.join(pkg_my_robot_description, 'rviz', 'urdf_config.rviz'))
     return LaunchDescription([
         gz_sim,
         bridge,
-        #rviz,
+        rviz,
         robot_state_publisher,
         spawn,
         diff_cont,
