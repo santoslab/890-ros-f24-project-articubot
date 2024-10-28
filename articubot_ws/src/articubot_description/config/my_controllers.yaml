@@ -19,7 +19,7 @@ diff_cont:
     right_wheel_names: ['base_right_wheel_joint']
     wheel_separation: 0.3048
     wheel_radius: 0.034925
-    # odom_frame_id: 'base_footprint'
+    odom_frame_id: 'base_footprint'
 
     use_stamped_vel: false
 

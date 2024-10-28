@@ -27,7 +27,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
         launch_arguments={
-            'gz_args': '-r camera_sensor.sdf'
+            'gz_args': '-r ' + os.path.join(pkg_my_robot_description,'config','camera_sensor.sdf')
         }.items(),
     )
 
