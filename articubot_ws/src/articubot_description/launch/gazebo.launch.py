@@ -27,7 +27,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
         launch_arguments={
-            'gz_args': '-r empty.sdf'
+            'gz_args': '-r camera_sensor.sdf'
         }.items(),
     )
 
@@ -63,14 +63,16 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
-            '/world/empty/model/my_robot/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model',
+            '/world/camera_sensor/model/my_robot/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model',
             '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
             '/model/my_robot/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry',
             '/model/my_robot/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
-            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock'
+            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
+            '/camera@sensor_msgs/msg/Image@gz.msgs.Image',
+            '/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo'
         ],
         remappings=[
-            ('/world/empty/model/my_robot/joint_state', 'joint_states'),
+            ('/world/camera_sensor/model/my_robot/joint_state', 'joint_states'),
             ('/model/my_robot/tf', 'tf'),
             ('/cmd_vel', 'diff_cont/cmd_vel_unstamped'),
             ('/model/my_robot/odometry', '/diff_cont/odom')
