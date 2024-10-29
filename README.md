@@ -4,11 +4,33 @@ Repository for F24 ROS Articubot project
 # Resources
 
 ## Articulated Robotics Project Description
-(Insert links to Articulated Robotics (AR) YouTube series, website, and git repo)
+
+This project is based on the Articulated Robotics (AR) YouTube series
+[Building a mobile robot](https://youtube.com/playlist?list=PLunhqkrRNRhYAffV8JDiFOatQXuU-NnxT&si=RugUUmOhQfiXqiuk)
+
+Additional resources include:
+* The corresponding [blog
+  posts](https://articulatedrobotics.xyz/category/build-a-mobile-robot-with-ros)
+  on the AR website
+
+
+This project makes the following types of adaptations from the
+original description
+* some small changes are needed to get the project to work with Humble
+  distribution of ROS2 instead of the original Foxy.
+* a number of things had to be modified to use the new version of the
+  Gazebo simulator (Ignition Fortress -- which is the version recommended for
+  Humble) instead of Gazebo Classic.
+* minor changes were made to the hardware elements
 
 ## Parts List
 
-(insert link to parts list used in 890 version of robot)
+The AR Bill of Materials is provide on the [AR
+website](https://articulatedrobotics.xyz/tutorials/mobile-robot/project-overview#bill-of-materials).
+
+(For 890 version, place spreadsheet in git repo and insert link)
+
+
 
 # Workplan
 
@@ -46,7 +68,14 @@ Driver Board Ground|Power Supply Ground
 
 
 
-## URDF
+## Design Phase - URDF
 
-* Deliverable: Completed URDF for 890 version of the robot, with notes about how the URDF differs from the AR version 
-* Target Date for first draft: Week of Sept 23
+The original AR URDF/Xacro files at the completion of the design phase
+are provided in [this
+branch](https://github.com/joshnewans/articubot_one/tree/d5aa5e9bc9039073c0d8fd7fe426e170be79c087)
+of the AR github repo.
+
+For the 890 project, here are the following differences...
+(TBD)
+
+
