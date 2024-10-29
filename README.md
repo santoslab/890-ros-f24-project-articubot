@@ -30,9 +30,25 @@ website](https://articulatedrobotics.xyz/tutorials/mobile-robot/project-overview
 
 (For 890 version, place spreadsheet in git repo and insert link)
 
-
-
 # Workplan
+
+The work was carried out in a progression similar the one outlined on
+the AR blog.
+
+## Initial Design
+
+* URDF/XACRO specification of the robot, with assumed dimensions for
+  chassis, wheels, etc.  This enables the robot structure to be
+  visualized and provides the basis for a Gazebo simulation (next
+  step).  The dimensions where modified slightly once the robot was
+  actually assembled.
+* Initial Simulation in Gazebo  
+
+These steps have some extensions later in the project.  For example,
+when camera and lidar are added the URDF and Gazebo simulations are
+extended to include these additional components.
+
+
 
 ## Motor Prototyping
 
