@@ -62,7 +62,10 @@ def generate_launch_description():
     controller_manager = Node(
         package='controller_manager',
         executable='ros2_control_node',
-        parameters=[robot_description_from_node, controller_params]
+        parameters=[robot_description_from_node, controller_params],
+        remappings=[
+            ("~/robot_description", "/robot_description"),
+        ]
     )
 
     delayed_controller_manager = TimerAction(period=3.0, actions=[controller_manager])
@@ -73,7 +76,7 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='both',  # ???? ToDo - what is "both"
-        parameters=[robot_description_config, {"use_sim_time": False}],
+        parameters=[robot_description, {"use_sim_time": False}],
     )
 
     # ROS2-Gazebo Bridge
