@@ -73,7 +73,7 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='both',  # ???? ToDo - what is "both"
-        parameters=[robot_description, {"use_sim_time": False}],
+        parameters=[robot_description_config, {"use_sim_time": False}],
     )
 
     # ROS2-Gazebo Bridge
