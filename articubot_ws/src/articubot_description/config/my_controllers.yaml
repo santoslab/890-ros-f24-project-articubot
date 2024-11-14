@@ -1,14 +1,13 @@
 controller_manager:
   ros__parameters:
     update_rate: 30
-    use_sim_time: false
+    use_sim_time: true
 
     diff_cont:
       type: diff_drive_controller/DiffDriveController
     
     joint_broad:
       type: joint_state_broadcaster/JointStateBroadcaster
-## Directly below the controller_manager section
 
 diff_cont:
   ros__parameters:
@@ -18,10 +17,26 @@ diff_cont:
 
     left_wheel_names: ['base_left_wheel_joint']
     right_wheel_names: ['base_right_wheel_joint']
-    wheel_separation: 0.35
-    wheel_radius: 0.05
+    wheel_separation: 0.3048
+    wheel_radius: 0.034925
+    odom_frame_id: 'base_footprint'
 
     use_stamped_vel: false
 
-# joint_broad:
-#   ros__parameters:
+    # Added For ROS Control
+
+    linear.x.max_acceleration: 5.0
+
+    linear.x.min_acceleration: -5.0
+
+    linear.x.max_velocity: 3.0
+
+    linear.x.min_velocity: -3.0
+
+    angular.z.max_acceleration: 4.0
+
+    angular.z.min_acceleration: -4.0
+
+    angular.z.max_velocity: 3.0
+
+    angular.z.min_velocity: -3.0
