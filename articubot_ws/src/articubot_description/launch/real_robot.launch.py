@@ -57,12 +57,12 @@ def generate_launch_description():
     #     output='screen',
     # )
 
-    robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
+    robot_description_from_node = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
 
     controller_manager = Node(
         package='controller_manager',
         executable='ros2_control_node',
-        parameters=[robot_description, controller_params]
+        parameters=[robot_description_from_node, controller_params]
     )
 
     delayed_controller_manager = TimerAction(period=3.0, actions=[controller_manager])
