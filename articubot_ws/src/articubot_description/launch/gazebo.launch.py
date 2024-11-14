@@ -14,6 +14,14 @@ import xacro
 
 def generate_launch_description():
 
+    gazebo_params_path = os.path.join(get_package_share_directory(package_name),'config','gazebo_params.yaml')
+
+    gazebo = IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([os.path.join(
+                get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
+                launch_arguments={'extra_gazebo_args': '--ros-args --params-file ' + gazebo_params_path }.items()
+         )
+
     # Get package directories for later use
     #  get share directory of ros_gz_sim library
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
