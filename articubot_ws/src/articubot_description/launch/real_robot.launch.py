@@ -142,7 +142,7 @@ def generate_launch_description():
     )
     print(os.path.join(pkg_my_robot_description, 'rviz', 'urdf_config.rviz'))
     return LaunchDescription([
-        #rviz,
+        camera_node,
         robot_state_publisher,
         delayed_controller_manager,
         delayed_diff_cont_spawner,
