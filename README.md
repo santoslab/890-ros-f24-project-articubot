@@ -52,6 +52,16 @@ extended to include these additional components.
 
 ## Motor Prototyping
 
+ToDo:
+
+* Add 1 paragraph overview description of the goals of this activity and what product (part of the robot) is the result
+* Add link to Articulated robotics video that you followed
+* Add list of parts to be utilized in this activity (Arduino nano, L298N controller, motor(s), power sources, laptop or PI to interact over serial)
+* Add instructions for how to download and install sketch on Arduino (any notes on modifications to the sketch code)
+* Add instructions for commands to use to communicate over serial to arduino
+* Add description of basic tests/steps to calibrate encoder counts, etc.
+  
+
 ### Motor Wiring Chart
 **Start source**|**Destination source**
 :-----:|:-----:
