@@ -60,7 +60,38 @@ ToDo:
 * Add instructions for how to download and install sketch on Arduino (any notes on modifications to the sketch code)
 * Add instructions for commands to use to communicate over serial to arduino
 * Add description of basic tests/steps to calibrate encoder counts, etc.
-  
+
+### Open Loop Control
+
+#### Arduino Nano Initial Setup
+
+* Download (e.g., as a zip file) the contents of Josh's ROS Arduino Bridge repo https://github.com/joshnewans/ros_arduino_bridge
+* Open the file `ROSArduinoBridge.ino` in the Arduino IDE, compile it, and upload to the Arduino
+
+#### Prepare Infrastructure to Send Commands Over Serial 
+
+If you are using the Arduino IDE, you can send/receive serial messages over the Serial Monitor tool.  Otherwise, if you want to do communicate using the terminal, install MiniTerm.   Here are the instructions for Ubuntu (e.g., if you are setting up to communicate from the Raspberry Pi)
+```
+Foo bar
+```
+
+#### Complete Minimal Wiring/Power Circuit Needed for Interacting with Motors
+
+The following items are needed:
+* Arduino nano
+* L298N controller
+* motor
+* 5V power source
+* 12 power source
+* Ground comes from
+
+
+
+
+
+
+
+
 
 ### Motor Wiring Chart
 **Start source**|**Destination source**
