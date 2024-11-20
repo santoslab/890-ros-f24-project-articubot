@@ -82,7 +82,7 @@ def generate_launch_description():
     camera_node = Node(
         package="v4l2_camera",
         executable="v4l2_camera_node",
-        parameters=[{"image_size": "[640,480]"}]
+        parameters=[{"image_size": [640,480]}]
     )
 
     # ROS2-Gazebo Bridge
