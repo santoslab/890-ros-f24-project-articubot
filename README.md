@@ -107,6 +107,7 @@ Right Motor Blue|Arduino 5V pin
 Right Motor Green|Arduino pin A4
 Right Motor Yellow|Arduino pin A5
 Right Motor Black|Arduino Ground pin
+Right Motor Red|Driver Board Out3
 Driver Board In1|Arduino Pin D6
 Driver Board In2|Arduino Pin D10
 Driver Board In3|Arduino Pin D9
