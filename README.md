@@ -72,8 +72,13 @@ ToDo:
 
 If you are using the Arduino IDE, you can send/receive serial messages over the Serial Monitor tool.  Otherwise, if you want to do communicate using the terminal, install MiniTerm.   Here are the instructions for Ubuntu (e.g., if you are setting up to communicate from the Raspberry Pi)
 ```
-Foo bar
+sudo apt install -y python3-serial 
 ```
+
+On Mac OS using Homebrew, equivalent functionality is provided by `minicom`.
+```
+brew install minicom
+``` 
 
 #### Complete Minimal Wiring/Power Circuit Needed for Interacting with Motors
 
@@ -86,11 +91,84 @@ The following items are needed:
 * Ground comes from
 
 
+##### Connect Motor Controls to Driver Board
+
+The red & white leads from the motors connect to the two sets of blue side terminals on the Driver Board
+* Left Motor White -> Driver Board Out1
+* Left Motor Red -> Driver Board Out2
+* Right Motor White -> Driver Board Out3
+* Right Motor Red -> Driver Board Out4
+
+
+##### Connect Driver Board to Arduino
+
+Using female->male connectors connect Driver Board pins to Arduino
+
+Driver Board In1|Arduino Pin D6
+Driver Board In2|Arduino Pin D10
+Driver Board In3|Arduino Pin D9
+Driver Board In4|Arduino Pin D5
+
+##### Buck Converter
 
 
 
 
+##### Open Loop Control
 
+```
+ls /dev | grep ttyUSB
+pyserial-miniterm -e /dev/ttyUSB0 57600
+```
+Or using the macOS minicom, 
+```
+-b, --baudrate         : set baudrate (ignore the value from config)
+-D, --device           : set device name (ignore the value from config)
+tty.usbserial-B003PZ4Z
+```
+
+
+
+This brings up the mini-term interface.  To test the open loop control, you can do something like the following...
+```
+o 100 100
+```
+Perhaps it is a good idea to spin one wheel at a time to make sure that the wheel wiring is not reversed.
+
+### Closed Loop Control (adding encoder functionality)
+
+##### Connect Encoder Sensors from Each Motor to Arduino
+
+Right Motor
+* Right Motor Blue|Arduino 5V pin
+* Right Motor Green|Arduino pin A4
+* Right Motor Yellow|Arduino pin A5
+* Right Motor Black|Arduino Ground pin
+
+Left Motor
+* Left Motor Blue|Arduino 5v pin
+* Left Motor Green|Arduino pin D2
+* Left Motor Yellow|Arduino pin D3
+* Left Motor Black|Arduino Ground pin
+
+##### Callibrating Encoders
+
+To test to see if encoder sensors are working, do something like the following sequence over the serial connection...
+
+```
+m 100 100    // spin motors
+e            // read encoder values (should return 2 values)
+r            // reset encoder values
+e            // read encoder values (should return 2 0's)  
+```
+
+Now go through the process of doing getting encoders per revolution...
+
+* Make an indicator point on each wheel/shaft, e.g., using a piece of tape
+* Move the shaft manually in the direction of rotation to a reference position (e.g., tape pointing up)
+* reset the encoders with `r` and confirm that counts are 0 using `e`.
+* using managed rotation (e.g., such as 'm 100 100'), repeatedly give this command until you have approximate 22 rotations have occured (the exact # doesn't matter).  Manually rotate shaft in direction of rotation until reference position is reached.   
+* Read number of encoder counts using `e`.  For each wheel, Calculate the number of encoder steps per revolution by dividing total number of counter by revolution
 
 
 ### Motor Wiring Chart
@@ -114,6 +192,8 @@ Driver Board In4|Arduino Pin D5
 Driver Board +5V|Arduino 5V pin
 Driver Board +12V|Power supply +12V
 Driver Board Ground|Power Supply Ground
+
+**Right Motor Red - entry missing**
 
 
 * Phase 1 Deliverables (Target Date: Week of Sept 23) - Initial interaction with motors
