@@ -79,6 +79,12 @@ def generate_launch_description():
         parameters=[robot_description, {"use_sim_time": False}],
     )
 
+    camera_node = Node(
+        package="v4l2_camera",
+        executable="v4l2_camera_node",
+        parameters=[{"image_size": [640,480]}]
+    )
+
     # ROS2-Gazebo Bridge
     # bridge = Node(
     #     package='ros_gz_bridge',
@@ -136,7 +142,7 @@ def generate_launch_description():
     )
     print(os.path.join(pkg_my_robot_description, 'rviz', 'urdf_config.rviz'))
     return LaunchDescription([
-        #rviz,
+        camera_node,
         robot_state_publisher,
         delayed_controller_manager,
         delayed_diff_cont_spawner,

@@ -29,9 +29,9 @@ diff_cont:
 
     linear.x.min_acceleration: -5.0
 
-    linear.x.max_velocity: 3.0
+    linear.x.max_velocity: 6.0
 
-    linear.x.min_velocity: -3.0
+    linear.x.min_velocity: -6.0
 
     angular.z.max_acceleration: 4.0
 
