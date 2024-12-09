@@ -14,7 +14,7 @@ import xacro
 
 def generate_launch_description():
 
-    gazebo_params_path = os.path.join(get_package_share_directory(package_name),'config','gazebo_params.yaml')
+    gazebo_params_path = os.path.join(get_package_share_directory("articubot_description"),'config','gazebo_params.yaml')
 
     gazebo = IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(
@@ -76,6 +76,7 @@ def generate_launch_description():
             '/model/my_robot/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry',
             '/model/my_robot/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
             '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
+            '/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
             '/camera@sensor_msgs/msg/Image@gz.msgs.Image',
             '/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo'
         ],
