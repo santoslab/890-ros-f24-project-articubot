@@ -78,8 +78,8 @@
         </link>
     </xacro:macro>
 
-    <xacro:macro name="base_link">
-        <link name="base_link">
+    <xacro:macro name="chassis">
+        <link name="chassis">
             <visual>
                 <geometry>
                     <box size="${base_length} ${base_width} ${base_height}" />
@@ -120,48 +120,55 @@
 
 
     <!--INSTANCES OF XACROs-->
-    <xacro:base_link/>
+    <xacro:chassis/>
     <xacro:caster_wheel_link/>
     <xacro:wheel_link prefix="right" />
     <xacro:wheel_link prefix="left" />
     <xacro:lidar_stand_link />
     <xacro:lidar_link />
 
+    <link name="base_link" />
     <link name="base_footprint" />
+
+    <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_footprint"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
     
-    <joint name="base_joint" type="fixed">
-        <parent link="base_footprint" />
-        <child link="base_link" />
-        <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="chassis" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
     <joint name="base_right_wheel_joint" type="continuous">
-        <parent link="base_link" />
+        <parent link="chassis" />
         <child link="right_wheel_link" />
         <origin xyz="${-base_length / 4.0} ${-(base_width + wheel_length) / 2.0} 0" rpy="0 0 0" />
         <axis xyz="0 1 0" />
     </joint>
 
     <joint name="base_left_wheel_joint" type="continuous">
-        <parent link="base_link" />
+        <parent link="chassis" />
         <child link="left_wheel_link" />
         <origin xyz="${-base_length / 4.0} ${(base_width + wheel_length) / 2.0} 0" rpy="0 0 0" />
         <axis xyz="0 1 0" />
     </joint>
     
     <joint name="base_caster_wheel_joint" type="fixed">
-        <parent link="base_link" />
+        <parent link="chassis" />
         <child link="caster_wheel_link" />
         <origin xyz="${base_length / 3.0} 0 ${-wheel_radius / 2.0}" rpy="0 0 0" />
     </joint>
     
     <joint name="base_lidar_stand_joint" type="fixed">
-        <parent link="base_link" />
+        <parent link="chassis" />
         <child link="lidar_stand_link" />
         <origin xyz="${base_height/2.0} 0 ${base_height}" rpy="0 0 0" />
     </joint>
 
-    <joint name="lidar_stand_lidar_joint" type="continuous">
+    <joint name="lidar_stand_lidar_joint" type="fixed">
         <parent link="lidar_stand_link" />
         <child link="lidar_link" />
         <origin xyz="${-1.0*((lidar_stand_length/2.0)-lidar_radius)} 0 ${lidar_stand_height}" rpy="0 0 0" />
