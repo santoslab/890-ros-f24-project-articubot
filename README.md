@@ -66,6 +66,96 @@ LiPo Charge - 5.2 amp 11.1v (3S)
     ```
 
 6. Do a recursive clone of this repository on each machine. 
+    ```
+    git clone --recursive https://github.com/santoslab/890-ros-f24-project-articubot.git
+    ```
+
+7. On the ***pi***, run the command:
+
+    ```
+    sudo apt install openssh-server raspi-config python3-colcon-common-extensions -y
+    ```
+
+    - Then run,
+
+    ```
+    sudo raspi-config
+    ```
+
+    - Do the following inside of the raspi-config:
+
+      - 3 Interface Options --> Legacy Camera --> Yes
+      - 3 Interface Options --> SPI --> Yes
+      - 3 Interface Options --> I2C --> Yes
+      - 3 Interface Options --> SSH --> Yes
+    
+    - Then, press tab and right arrow to click finish, exiting the program.
+
+8. On the ***pi*** run the command:
+
+    ```
+    sudo apt install v4l-utils ros-humble-v4l-camera ros-humble-ros2-control ros-humble-ros2-controllers libserial-dev ros-humble-xacro -y
+    ```
+
+9. cd into articubot_ws in your copy of this repo on your pi, then run.
+
+    ```
+    colcon build 
+    source install/setup.bash
+    ```
+
+9. On the pi, remove all usb devices expect for arduino. (ssh into your pi in order to provide it commands)
+
+10. run the command on the pi making sure you are in the articubot_ws folder of the repo's directory:
+
+    ```
+    ls /dev/serial/by-path/
+    ```
+
+    - copy the resulting string from the ls command. 
+
+    ```
+    nano src/articubot_description/urdf/ros2_control.xacro 
+    ```
+
+    - in the line containing /dev/serial/by-path/. . . , replace . . . with your copied string:
+
+    ![First Replacement Picture](/ReadMe_Pictures/FirstReplace.png)
+
+    ```
+    It will resemble the following:
+    /dev/serial/by-path/COPIED_STRING
+    ```
+
+11. Plug in the USB hub to the pi with the lidar.
+
+12. On the pi:
+
+    ```
+    ls /dev/serial/by-path/
+    ```
+
+    - copy the new string in the result of ls.
+
+    ```
+    nano src/articubot_description/launch/real_robot.launch.py
+    ```
+
+    - on the lidar node's parameter's serial port entry, make it resemble the following like step #10.
+
+    ![Second Replacement Picture](/ReadMe_Pictures/SecondReplace.png)
+
+    ```
+    /dev/serial/by-path/COPIED_STRING
+    ```
+
+13. Run the following command on the within the articubot_ws folder of the repo:
+
+    ```
+    colcon build
+    source install/setup.bash
+    ros2 launch articubot_description real_robot.launch.py
+    ```
 
 # Workplan
 
