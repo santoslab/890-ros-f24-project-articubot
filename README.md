@@ -62,8 +62,10 @@ LiPo Charge - 5.2 amp 11.1v (3S)
 
 5. Do the following commands on both:
     ```
-    run echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+    echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
     ```
+
+6. Do a recursive clone of this repository on each machine. 
 
 # Workplan
 
