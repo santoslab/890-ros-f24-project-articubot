@@ -181,6 +181,8 @@ LiPo Charge - 5.2 amp 11.1v (3S)
     sudo apt install ros-humble-twist-mux rviz ros-humble-slam-toolbox joystick -y
     ```
 
+NOTE: When running the system, there is a race condition that exists within the real_robot.launch.py file. If the race condition causes an unsuccessful launch (the launch exits when ran by itself), then try again. At the moment, the system waits 3 seconds before trying to run the second part of the race condition, but this does not always catch it. 
+
 # Workplan
 
 The work was carried out in a progression similar the one outlined on
