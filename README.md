@@ -30,6 +30,41 @@ website](https://articulatedrobotics.xyz/tutorials/mobile-robot/project-overview
 
 (For 890 version, place spreadsheet in git repo and insert link)
 
+# Charging the Battery
+
+Plug in the battery to the charger terminals before providing power to prevent sparks.
+
+![Lipo Wiring Image](/ReadMe_Pictures/Lipo_Wire.png)
+
+![Lipo Charge Settings Image](/ReadMe_Pictures/LipoCharge.png)
+
+LiPo Charge - 5.2 amp 11.1v (3S) 
+- Long press on Enter.
+- Enter again.
+
+
+# Setup Instructions
+
+1. Install Ubuntu 22.04
+
+    - On a Virutal Machine or Personal Computer (64bit).
+    - And on a Raspberry Pi (Still Ubuntu 22.04, use the 64bit version from the raspberry pi imager utility).
+
+2. In both machine, run the following commands in command prompt:
+
+    ```
+    sudo apt update && sudo apt upgrade -y
+    ```
+
+3. Reboot both of the systems.
+
+4. Follow the setup instructions to install [ROS2 Humble](https://docs.ros.org/en/humble/Installation.html) on both.
+
+5. Do the following commands on both:
+    ```
+    run echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+    ```
+
 # Workplan
 
 The work was carried out in a progression similar the one outlined on
@@ -193,8 +228,6 @@ Driver Board In4|Arduino Pin D5
 Driver Board +5V|Arduino 5V pin
 Driver Board +12V|Power supply +12V
 Driver Board Ground|Power Supply Ground
-
-**Right Motor Red - entry missing**
 
 
 * Phase 1 Deliverables (Target Date: Week of Sept 23) - Initial interaction with motors
