@@ -56,21 +56,37 @@ LiPo Charge - 5.2 amp 11.1v (3S)
     sudo apt update && sudo apt upgrade -y
     ```
 
-3. Reboot both of the systems.
+3. Run the command on the pi:
 
-4. Follow the setup instructions to install [ROS2 Humble](https://docs.ros.org/en/humble/Installation.html) on both.
+    ```
+    sudo usermod -a -G dialout jill
+    ```
+    
+    - NOTE: jill is the username we have on *our* pi, yours may be different.
 
-5. Do the following commands on both:
+    ```
+    sudo usermod -a -G video jill
+    ```
+
+    - NOTE: jill is the username we have on *our* pi, yours may be different.
+
+4. Reboot both of the systems.
+
+5. Follow the setup instructions to install [ROS2 Humble](https://docs.ros.org/en/humble/Installation.html) on both.
+
+6. Do the following commands on both:
     ```
     echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
     ```
 
-6. Do a recursive clone of this repository on each machine. 
+7. Do a recursive clone of this repository on each machine. 
     ```
     git clone --recursive https://github.com/santoslab/890-ros-f24-project-articubot.git
     ```
 
-7. On the ***pi***, run the command:
+## Pi Only
+
+8. On the ***pi***, run the command:
 
     ```
     sudo apt install openssh-server raspi-config python3-colcon-common-extensions -y
@@ -91,22 +107,22 @@ LiPo Charge - 5.2 amp 11.1v (3S)
     
     - Then, press tab and right arrow to click finish, exiting the program.
 
-8. On the ***pi*** run the command:
+9. On the ***pi*** run the command:
 
     ```
     sudo apt install v4l-utils ros-humble-v4l-camera ros-humble-ros2-control ros-humble-ros2-controllers libserial-dev ros-humble-xacro -y
     ```
 
-9. cd into articubot_ws in your copy of this repo on your pi, then run.
+10. cd into articubot_ws in your copy of this repo on your pi, then run.
 
     ```
     colcon build 
     source install/setup.bash
     ```
 
-9. On the pi, remove all usb devices expect for arduino. (ssh into your pi in order to provide it commands)
+11. On the pi, remove all usb devices expect for arduino. (ssh into your pi in order to provide it commands)
 
-10. run the command on the pi making sure you are in the articubot_ws folder of the repo's directory:
+12. run the command on the pi making sure you are in the articubot_ws folder of the repo's directory:
 
     ```
     ls /dev/serial/by-path/
@@ -127,9 +143,9 @@ LiPo Charge - 5.2 amp 11.1v (3S)
     /dev/serial/by-path/COPIED_STRING
     ```
 
-11. Plug in the USB hub to the pi with the lidar.
+13. Plug in the USB hub to the pi with the lidar.
 
-12. On the pi:
+14. On the pi:
 
     ```
     ls /dev/serial/by-path/
@@ -149,12 +165,20 @@ LiPo Charge - 5.2 amp 11.1v (3S)
     /dev/serial/by-path/COPIED_STRING
     ```
 
-13. Run the following command on the within the articubot_ws folder of the repo:
+15. Run the following command on the within the articubot_ws folder of the repo:
 
     ```
     colcon build
     source install/setup.bash
     ros2 launch articubot_description real_robot.launch.py
+    ```
+
+## VM/Personal Only
+
+16. Run the following install command:
+
+    ```
+    sudo apt install ros-humble-twist-mux rviz ros-humble-slam-toolbox joystick -y
     ```
 
 # Workplan
